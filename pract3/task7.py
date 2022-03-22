@@ -19,7 +19,6 @@ axs[0, 1].scatter([random.random() for _ in xs], [random.random() for _ in xs], 
 axs[1, 0].bar(xs, [random.random() for _ in xs])
 axs[1, 1].imshow([[random.random() for _ in xs] for _ in xs]);
 '''
-
 def mas_sv(digit):
     a = [[0 for i in range(5)]for j in range(5)]
     for i in range(5):
