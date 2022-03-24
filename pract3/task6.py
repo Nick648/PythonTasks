@@ -98,7 +98,7 @@ def main():
     The main prog
     """
 
-    logging.basicConfig(filename="logs.log", filemode='w', level=logging.INFO)
+    logging.basicConfig(filename="output/logs.log", filemode='w', level=logging.INFO)
     '''
     logging.basicConfig(filename='logs.log', filemode='w',
                         format='%(asctime)s %(msecs)d- %(process)d- % (levelname)s - % (message)s',
