@@ -16,23 +16,23 @@
 Для быстрой проверки используйте сайт pep8online.com.
 '''
 ############ №1
-def main (x):
+def main_1 (x):
     print(x)
 
-main(1)
+main_1(1)
 
 ############ №2
-def main(x):
+def main_2(x):
     y=2*x
     print(y)
 
-main(1)
+main_2(1)
 
 ############ №3
-def main(x,y):
+def main_3(x,y):
     print(x + y)
 
-main(1, 2)
+main_3(1, 2)
 
 ############ №4
 print(4, end = ' ')
@@ -40,10 +40,10 @@ print(4, end = ' ')
 ############ №5
 import math
 
-def main(num):
+def main_5(num):
     print(num)
 
-main(5)
+main_5(5)
 
 ############ №6
 style: str = "6"

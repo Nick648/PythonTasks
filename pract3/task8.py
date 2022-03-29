@@ -69,6 +69,7 @@ def main():
             #print(number, name, x_cord, y_cord, radius, descript)
             new_star = Star(number, name, x_cord, y_cord, radius, descript)
             stars.append(new_star)
+    #print(dir(Star))
     draw(stars)
 
 if __name__ == '__main__':

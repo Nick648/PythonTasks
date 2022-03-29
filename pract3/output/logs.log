@@ -1,0 +1,34 @@
+INFO:root: Program started 24-03-2022 23:45:54
+
+WARNING:root: In func_1() error is: division by zero, <class 'ZeroDivisionError'>, <traceback object at 0x012C0568>
+ERROR:root: An error has happened!
+
+WARNING:root: In func_2() error is: 'str' object does not support item assignment, <class 'TypeError'>, <traceback object at 0x012C0568>
+ERROR:root: An error has happened!
+
+WARNING:root: In func_3() error is: name 'a' is not defined, <class 'NameError'>, <traceback object at 0x012C0568>
+ERROR:root: An error has happened!
+
+INFO:root: func_4() is Done!
+
+WARNING:root: In func_5() error is: 'int' object has no attribute 'append', <class 'AttributeError'>, <traceback object at 0x012C02A8>
+ERROR:root: An error has happened!
+
+WARNING:root: In func_6() error is: list index out of range, <class 'IndexError'>, <traceback object at 0x012C02A8>
+ERROR:root: An error has happened!
+
+WARNING:root: In func_7() error is: unsupported operand type(s) for +: 'int' and 'str', <class 'TypeError'>, <traceback object at 0x012C02A8>
+ERROR:root: An error has happened!
+
+WARNING:root: In func_8() error is: No module named 'xyz', <class 'ModuleNotFoundError'>, <traceback object at 0x012C0608>
+ERROR:root: An error has happened!
+
+INFO:root: func_9() is Done!
+
+WARNING:root: In func_10() error is: too many values to unpack (expected 3), <class 'ValueError'>, <traceback object at 0x012C0568>
+ERROR:root: An error has happened!
+
+WARNING:root: In func_11() error is: 'c', <class 'KeyError'>, <traceback object at 0x012C0568>
+ERROR:root: An error has happened!
+
+INFO:root: Program end!
