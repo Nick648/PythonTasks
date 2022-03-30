@@ -4,6 +4,7 @@ FLOAT = 'FLOAT'
 ID = 'ID_VAR'
 OP = '_OP'
 KW = 'KW_'
+RESERVED = 'RESERVED'
 
 # Token's List
 token_exprs = [
@@ -24,6 +25,7 @@ token_exprs = [
     (r'\+', 'PLUS' + OP),
     (r'-', 'MINUS' + OP),
     (r'\.', 'POINT'),
+    (r'\,', 'COMMA'),
     (r'\*', 'MULTIPLICATION' + OP),
     (r'/', 'SLASH'),
     (r'<=', 'LESS_EQUALLY' + OP),

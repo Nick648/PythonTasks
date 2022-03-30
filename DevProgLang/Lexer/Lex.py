@@ -1,6 +1,7 @@
 # package DevProgLang/Lexer/Lex.py
 import sys
 import re
+import os
 from Tokens import *
 
 
@@ -32,7 +33,10 @@ def lex(characters):  # lexer
 def openfile(filename):
     if ".txt" not in filename:
         filename += ".txt"
-    filename = 'data/' + filename
+    filename = os.path.abspath('../Lexer/data') + '/' + filename
+    # filename = 'data/' + filename
+    # print(f'Current Working Directory is: {os.getcwd()}')
+    # print('filename:', filename)
     try:
         with open(file=filename, mode='r', encoding='utf-8') as f:
             print('\nEverything is OK! The file is open!\n')
