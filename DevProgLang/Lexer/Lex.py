@@ -3,13 +3,13 @@ import re
 from Tokens import *
 
 
-def lex(characters, token_exprs):
+def lex(characters):  # lexer
     pos = 0
     tokens = []
     while pos < len(characters):
         # print(">" * 10, pos)
         match = None
-        for token_exp in token_exprs:
+        for token_exp in token_exprs:  # token_exprs from Tokens.py
             pattern, tag = token_exp
             regex = re.compile(pattern)  # use reg
             match = regex.match(characters, pos)
@@ -40,7 +40,3 @@ def openfile(filename):
     except:  # Error
         print("\nYou DON'T have a file with that name!\n")
         exit(1)
-
-
-def imp_lex(characters):
-    return lex(characters, token_exprs)  # lexer

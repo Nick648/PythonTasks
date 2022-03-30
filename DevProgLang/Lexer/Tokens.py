@@ -1,5 +1,5 @@
-RESERVED = 'RESERVED'
 INT = 'INT'
+FLOAT = 'FLOAT'
 ID = 'ID_VAR'
 OP = '_OP'
 KW = 'KW_'
@@ -10,7 +10,7 @@ token_exprs = [
     (r'[ \t]+', None),
     (r'#.*|//.*', 'COMMENT'),
     (r'[/]\*([^#]*)\*[/]', 'MULTILINE_COMMENT'),
-    (r'[+-]*[0-9]+\.[0-9]+', 'FLOAT'),
+    (r'[+-]*[0-9]+\.[0-9]+', FLOAT),
     (r'[+-]*[1-9]+|0', INT),
     (r'\'', 'MARKS'),
     (r'\"', 'DOUBLE_QUOTES'),

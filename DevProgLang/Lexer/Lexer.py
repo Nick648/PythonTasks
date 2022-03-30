@@ -7,7 +7,7 @@ if __name__ == '__main__':
     file = open(filename)
     characters = file.read()  # str
     file.close()
-    tokens = imp_lex(characters)  # list
+    tokens = lex(characters)  # list
     print('Tokens:')
     for token in tokens:
         print(">>>", token)
