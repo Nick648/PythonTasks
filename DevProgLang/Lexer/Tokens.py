@@ -1,3 +1,4 @@
+# package DevProgLang/Lexer/Tokens.py
 INT = 'INT'
 FLOAT = 'FLOAT'
 ID = 'ID_VAR'
