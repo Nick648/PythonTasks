@@ -28,6 +28,7 @@ class Mili():
             self.__pos = 'F'
             return 3  # '-> ' + str(0)
         else:
+            raise KeyError
             return 'KeyError'
 
     def hop(self):
@@ -41,6 +42,7 @@ class Mili():
             self.__pos = 'F'
             return 1  # '-> ' + str(0)
         else:
+            raise KeyError
             return 'KeyError'
 
 
@@ -52,17 +54,47 @@ o = main()
 o.slur()
 o.hop()
 o.hop()
-o.hop()
+# o.hop()
 o.slur()
-o.hop()
-o.slur()
-o.slur()
+# o.hop()
 o.slur()
 o.slur()
 o.slur()
 o.slur()
 o.slur()
 o.slur()
+o.slur()
+o.slur()
+
+o1 = main()
+
+
+def str_raz(s_input):
+    list_s = s_input.split(',')  # s_input.split(' ')
+    for item in list_s:
+        item.strip()
+        if item == '.slur()' or item == '.slur' or item == 'slur()' or item == 'slur':
+            o1.slur()
+        elif item == '.hop()' or item == '.hop' or item == 'hop()' or item == 'hop':
+            o1.hop()
+
+
+s_input = 'slur(), \
+hop(),\
+hop(),\
+*hop(),\
+slur(),\
+*hop(),\
+slur(),\
+slur(),\
+slur(),\
+slur(),\
+slur(),\
+slur(),\
+slur(),\
+slur()'
+
+str_raz(s_input)
 
 '''
 def r_1():
