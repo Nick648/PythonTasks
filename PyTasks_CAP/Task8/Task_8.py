@@ -22,8 +22,8 @@ def main(x):
     result = dict()
     # print(x_parts)
     for path in x_parts:
-        k = path.find(':=')
         if path.find(':=') != -1:
+            k = path.find(':=')
             key = path[path.rfind(' ', 0, k - 1) + 1: k]
             key = key.replace(' ', '')
             value = path[path.find('q(', k) + 2:path.find(')', k)]
@@ -33,6 +33,6 @@ def main(x):
     return result
 
 
-s = '[[begin define quinra_57:= q(beisxe). end begin define amaabe\n'\
+s = '[[begin define quinra_57:= q(beisxe). end begin define amaabe\n' \
     ':=q(laar). end begin define edla:= q(tiza_703). end ]]'
-main(s)
+print(main(s))
