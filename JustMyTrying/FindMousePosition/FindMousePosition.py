@@ -45,10 +45,10 @@ while True:
         else:
             s = "Location mouse: " + str(mouseX) + " " + str(mouseY) + "\n"
             s += "Recently location mouse: " + str(mouseX0) + " " + str(mouseY0)
-            s += "\n" + "Distantion: " + str(abs(mouseX - mouseX0)) + " " + str(abs(mouseY - mouseY0))
+            s += "\n" + "Distance: " + str(abs(mouseX - mouseX0)) + " " + str(abs(mouseY - mouseY0))
             print("Location mouse:", mouseX, mouseY)
             print("Recently location mouse:", mouseX0, mouseY0)
-            print("Distantion:", abs(mouseX - mouseX0), abs(mouseY - mouseY0))
+            print("Distance:", abs(mouseX - mouseX0), abs(mouseY - mouseY0))
             print("-" * 20)
             mouseX0 = mouseX
             mouseY0 = mouseY

@@ -12,9 +12,8 @@ for i in codes:
 def extract_wifi_passwords():
     """Extracting Windows Wi-Fi passwords into .txt file"""
 
-    HomeDir = os.path.expanduser('~')
-    HomeDir += r'\Desktop'
-    # print("Путь к рабочему столу: " + HomeDir + "\n")
+    HOME_DIR = os.path.expanduser('~') + r'\Desktop'
+    # print("Путь к рабочему столу: " + HOME_DIR + "\n")
 
     try:
         profiles_data = subprocess.check_output('netsh wlan show profiles').decode("utf-8").split(
@@ -58,7 +57,7 @@ def extract_wifi_passwords():
 
         '''
         # new file with passwords in desktop
-        with open(file = HomeDir + r'\wifi_passwords_2.txt', mode = 'a', encoding = 'utf-8') as file_2:
+        with open(file=HOME_DIR + r'\wifi_passwords_2.txt', mode='a', encoding='utf-8') as file_2:
             file_2.write(f'Profile: {profile}\nPassword: {password}\n{"#" * 20}\n')
         '''
 
