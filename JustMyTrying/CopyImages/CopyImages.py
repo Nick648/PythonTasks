@@ -2,12 +2,14 @@ import os
 import shutil
 import keyboard as key
 import time as tm
+# import subprocess
+# import signal
+# import psutil
 
-
-# from PIL import Image
 
 def exi_t(farewell="Goodbye"):  # Exiting the program
     print('\n' + farewell)
+    input()
     exit()
 
 
@@ -30,15 +32,26 @@ def main(start_dir):  # The main algorithm of the program
         # print(file, type(file), file[-3:])
         if file[-3:].lower() in ['jpg', 'png']:
             os.startfile(file)  # don't know how that close
-            # img = Image.open(file)
-            # img.show()
+            # shell_process = subprocess.Popen([file], shell=True)
+            # print('shell_process:', shell_process)
+            # print('shell_process.pid:', shell_process.pid)
             while True:
                 if key.is_pressed('Ctrl'):
                     tm.sleep(0.15)
+                    '''
+                    parent = psutil.Process(shell_process.pid)
+                    children = parent.children(recursive=True)
+                    print(children)
+                    child_pid = children[0].pid
+                    print(child_pid)
+                    os.kill(child_pid, signal.SIGTERM)
+                    os.kill(shell_process.pid, signal.SIGTERM)
+                    '''
                     break
                 if key.is_pressed('Q'):
                     shutil.copyfile(start_dir + start_dir[2] + file, new_loc_folder + start_dir[2] + file)
                     tm.sleep(0.15)
+                    break
                 if key.is_pressed('Esc'):
                     exi_t()
     exi_t()
@@ -53,5 +66,6 @@ if __name__ == "__main__":
     Enjoy using it!
     '''
     print(greeting)
-    start_dir = input('Start_dir: ')
+    # start_dir = input('Start_dir: ')
+    start_dir = r'C:\Dima\Изображения\Картинки'
     main(start_dir)

@@ -1,4 +1,4 @@
-class Mili:
+class Miles:
     def __init__(self):
         self._state = 'A'
         self._graph = {
@@ -24,31 +24,12 @@ class Mili:
 
 
 def main():
-    return Mili()
+    return Miles()
 
 
 o = main()
 
 '''
-o = main()
-o.slur()
-o.hop()
-o.hop()
-# o.hop()
-o.slur()
-# o.hop()
-o.slur()
-o.slur()
-o.slur()
-o.slur()
-o.slur()
-o.slur()
-o.slur()
-o.slur()
-
-o1 = main()
-
-
 def str_raz(s_input):
     list_s = s_input.split(',')  # s_input.split(' ')
     for item in list_s:
@@ -59,19 +40,19 @@ def str_raz(s_input):
             o1.hop()
 
 
-s_input = 'slur(), \
-hop(),\
-hop(),\
-*hop(),\
-slur(),\
-*hop(),\
-slur(),\
-slur(),\
-slur(),\
-slur(),\
-slur(),\
-slur(),\
-slur(),\
+s_input = 'slur(),
+hop(),
+hop(),
+*hop(),
+slur(),
+*hop(),
+slur(),
+slur(),
+slur(),
+slur(),
+slur(),
+slur(),
+slur(),
 slur()'
 
 str_raz(s_input)
