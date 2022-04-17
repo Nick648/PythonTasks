@@ -27,5 +27,5 @@ for i in range(3):
     text += '\n\n'
 
 print(text)
-with open(file = 'Text_5.txt', mode = 'w', encoding = 'utf-8') as file:
+with open(file ='Text_5.txt', mode ='w', encoding ='utf-8') as file:
     file.write(text)
