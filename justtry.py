@@ -10,7 +10,7 @@ print(-2 << 2)  # вывод -8, то есть -0b1000
 print(5 << 64)  # Вывод: 92233720368547758080L
 mask = 0b100
 print(0b110000 | mask)  # turn on bit 3   52 0b110100
-d = {'A1': 55710, 'A2': 3117605073, 'A3': {'B1': 116, 'B2': 'ojhlg',
+d = {'A1': 55710, 'A2': 3117605073, 'A3': {'B1': 116, 'B2': 'some',
                                            'B3': 3355658423983942197,
                                            'B4': 71,
                                            'B5': -6206866255639629226},
@@ -44,3 +44,23 @@ d1 = {1: 'a', 2: 'b',
       }
 pprint(d)
 pprint(d1)
+# s = input(': ')
+# s += '\b' * 2
+# print(s)
+a = input(': ')
+
+
+def func(a: str) -> str:
+    return a * 2
+
+
+print(func(a))
+
+print('16(111):', int('11', base=16))  # Шестнадцатеричная
+a = [0x90, 0x47, 0x56, 0x44, 0x4f]
+for i in a:
+    print(i, hex(i), bin(i), len(bin(i)) - 2, chr(i))
+s = 'some'
+d = s.encode()
+print(s.encode('utf-16'))
+print(d.decode('utf-16'))
