@@ -11,7 +11,7 @@ def lex(characters):  # lexer
     while pos < len(characters):
         # print(">" * 10, pos)
         match = None
-        for token_exp in token_exprs:  # token_exprs from Tokens.py
+        for token_exp in token_exprs:  # token_expression from Tokens.py
             pattern, tag = token_exp
             regex = re.compile(pattern)  # use reg
             match = regex.match(characters, pos)
@@ -38,10 +38,9 @@ def openfile(filename):
     # print(f'Current Working Directory is: {os.getcwd()}')
     # print('filename:', filename)
     try:
-        with open(file=filename, mode='r', encoding='utf-8') as f:
+        with open(file=filename, mode='r', encoding='utf-8') as _:
             print('\nEverything is OK! The file is open!\n')
             return filename
-
-    except:  # Error
+    except FileNotFoundError:  # Error
         print("\nYou DON'T have a file with that name!\n")
         exit(1)

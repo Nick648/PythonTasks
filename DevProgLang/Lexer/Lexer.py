@@ -9,7 +9,7 @@ if __name__ == '__main__':
     characters = file.read()  # str
     file.close()
     tokens = lex(characters)  # list
-    print('Tokens:')
+    print('Tokens:')  # Tokens: [('5', 'INT'), ('+', 'PLUS_OP'),...
     for token in tokens:
         print(">>>", token)
     print('\nDone!')
