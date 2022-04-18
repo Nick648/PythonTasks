@@ -7,7 +7,8 @@ import struct
 
 def parse_array(data, size, typ, offset):  # Unpacking an array
     n = struct.calcsize(typ)
-    return list(struct.unpack(f'>{size}{typ}', data[offset: offset + size * n]))
+    return list(struct.unpack(f'>{size}{typ}',
+                              data[offset: offset + size * n]))
 
 
 def parse_array_struct_b(data, size, offset):  # Unpacking a struct-array B
