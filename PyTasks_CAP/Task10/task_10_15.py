@@ -45,6 +45,12 @@ def main(table):
     return table
 
 
+def output_data(arr, number=0):  # output array
+    print("Table " + str(number) + ":\n")
+    pprint(main(arr))
+    print('\n', '-' * 120, '\n')
+
+
 input_str_1 = [[None, None, None, None, None],
                [None, None, 'false;ajdar19@mail.ru', '0.187', '+7 301 840-48-57'],
                [None, None, None, None, None],
@@ -52,14 +58,21 @@ input_str_1 = [[None, None, None, None, None],
                [None, None, 'false;marsel_24@yahoo.com', '0.299', '+7 187 544-32-58'],
                [None, None, 'false;miroslav75@rambler.ru', '0.472', '+7 860 433-33-58']]
 
-print("Table 1:")
-pprint(main(input_str_1))
-
 input_str_2 = [[None, None, None, None, None],
                [None, None, 'true;damir11@mail.ru', '0.619', '+7 016 898-99-87'],
                [None, None, None, None, None],
                [None, None, 'true;sutubuk95@yandex.ru', '0.181', '+7 247 311-59-08'],
                [None, None, 'false;grigorij32@gmail.com', '0.452', '+7 367 417-27-27']]
 
-print("Table 2:")
-pprint(main(input_str_2))
+input_str_3 = [[None, None, None, None, None],
+               [None, None, 'false;ajdar19@mail.ru', '0.187', '+7 301 840-48-57'],
+               [None, None, 'false;marsel_24@yahoo.com', '0.299', '+7 187 544-32-58'],
+               [None, None, 'false;miroslav75@rambler.ru', '0.472', '+7 860 433-33-58']]
+
+if __name__ == "__main__":
+    print('\nResult:\n')
+    print('-' * 120, '\n')
+    output_data(input_str_1, 1)
+    output_data(input_str_2, 2)
+    output_data(input_str_3, 3)
+    print('Done!')
