@@ -1,3 +1,5 @@
+# Вариант 18
+
 def main(x):  # x similar everywhere
     # print("x:", x, hex(x), bin(x), len(bin(x)) - 2)
     a = x & 0b1111_1111_1111_1  # binary
@@ -16,7 +18,11 @@ def main(x):  # x similar everywhere
     return result
 
 
-print(hex(main(0x988dba6a)))
+hex(main(0x988dba6a))
+
+# For CAP, you only need what is above, having checked in advance for PEP8
+if __name__ == "__main__":
+    print(hex(main(0x988dba6a)))
 
 """
 # Вариант 40

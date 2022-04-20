@@ -64,27 +64,6 @@ def main(data):
     return parse_a(data, 5)  # offset = 5
 
 
-def output_data(dic, number=0):  # output dictionary
-    print(dic, '\n', 'DICT_' + str(number) + ':\n')
-    for i in dic:
-        if i == 'A3':
-            print('A3:')
-            for ib in dic[i]:
-                print(" " * 4, str(ib) + str(":"), dic[i][ib])
-        elif i == 'A5':
-            print('A5:')
-            for ic in range(len(dic[i])):
-                for ics in dic[i][ic]:
-                    print(" " * 4, str(ics) + str(":"), dic[i][ic][ics])
-        elif i == 'A6':
-            print('A6:')
-            for idi in dic[i]:
-                print(" " * 4, str(idi) + str(":"), dic[i][idi])
-        else:
-            print(str(i) + str(":"), dic[i])
-    print('\n', '-' * 120, '\n')
-
-
 inp_1 = (b'\x90GVDO\x9e\xd9\xd1\xe0\xd2\xb9\x86\x00\xea52\xf1\xdc\x9dO\xe2\\_B'
          b'\xbf\xcf\xed\x12\xbep\xf4p\xbfbeT\xbe+'
          b'\xfec\xbf\x94\x03\xc7\xbe\xa1\xe5\x94'
@@ -97,6 +76,34 @@ inp_1 = (b'\x90GVDO\x9e\xd9\xd1\xe0\xd2\xb9\x86\x00\xea52\xf1\xdc\x9dO\xe2\\_B'
          b'lgt\x05\x00\x81\x00\x00\x005*\x1c\xbd\x8e'
          b'\xb1\x91.GV\xb2=\xa0\x06\xc8'
          b'\xdc\xa9\xb8\xce\\\xc4Qn\xb4\xc1\xf7\xdd\xda\nbL\xd0:\x93')
+
+main(inp_1)
+
+
+# For CAP, you only need what is above, having checked in advance for PEP8
+
+def output_data(dic, number=0):  # output dictionary
+    print(dic, '\n', 'DICT_' + str(number) + ':\n')
+    for i in dic:
+        if i == 'A3':
+            print('A3:')
+            for ib in dic[i]:
+                print(" " * 4, str(ib) + str(":"), dic[i][ib])
+        elif i == 'A5':
+            print('A5:')
+            for ic in range(len(dic[i])):
+                print(" " * 4, "[")
+                for ics in dic[i][ic]:
+                    print(" " * 4, str(ics) + str(":"), dic[i][ic][ics])
+                print(" " * 4, "[")
+        elif i == 'A6':
+            print('A6:')
+            for idi in dic[i]:
+                print(" " * 4, str(idi) + str(":"), dic[i][idi])
+        else:
+            print(str(i) + str(":"), dic[i])
+    print('\n', '-' * 120, '\n')
+
 
 inp_2 = (b'\x90GVDO\xaa\xc0\x92\x87\x81\x8b\x83\x00\xb1\xa0\r[[\xbbH\xa7\xf0\x1d\xc4'
          b'>\noE\xbf\x11\xfc\xa2\xbep\x92^?O\xed$\xbc\x8e\xe6>\xbf\xd55\x04'

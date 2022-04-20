@@ -1,3 +1,5 @@
+# Вариант 18
+
 def main(x):
     if x[1] == 1970:
         return x2_2(x)

@@ -1,7 +1,9 @@
+# Вариант 18
+
 def main(y, x):
     ans = 0
     for i in range(len(x)):
-        ans += 2*(80*x[i//4]+67*x[len(x)-1-i]**3+y[i//4]**2)**5
+        ans += 2 * (80 * x[i // 4] + 67 * x[len(x) - 1 - i] ** 3 + y[i // 4] ** 2) ** 5
     ans *= 55
     return ans
 

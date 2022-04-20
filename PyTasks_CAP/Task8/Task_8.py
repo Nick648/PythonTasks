@@ -1,3 +1,5 @@
+# Вариант 18
+
 def main(x):
     x = x.replace('\n', ' ').replace('\t', '')[2:-2]
     x_parts = x.split('.')
@@ -17,7 +19,11 @@ def main(x):
 
 s = '[[begin define quinra_57:= q(beisxe). end begin define amaabe\n' \
     ':=q(laar). end begin define edla:= q(tiza_703). end ]]'
-print(main(s))
+main(s)
+
+# For CAP, you only need what is above, having checked in advance for PEP8
+if __name__ == "__main__":
+    print("Res 1:", main(s))
 
 """
 # Вариант 40

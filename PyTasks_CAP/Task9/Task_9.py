@@ -1,3 +1,5 @@
+# Вариант 18
+
 class Miles:
     def __init__(self):
         self._state = 'A'

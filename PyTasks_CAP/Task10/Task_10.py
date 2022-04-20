@@ -50,4 +50,19 @@ input_str = [[None, 'true', 'leonid49[at]mail.ru', '+7 435 974-48-88', '06-06-19
              [None, 'false', 'miroslav78[at]rambler.ru', '+7 554 685-39-99', '04-09-2003', '04-09-2003'],
              [None, 'false', 'Sahar19[at]gmail.com', '+7 254 789-44-24', '16-11-2003', '16-11-2003']]
 
-pprint(main(input_str))
+main(input_str)
+
+
+# For CAP, you only need what is above, having checked in advance for PEP8
+
+def output_data(arr, number=0):  # output array
+    print("Table " + str(number) + ":\n")
+    pprint(main(arr))
+    print('\n', '-' * 120, '\n')
+
+
+if __name__ == "__main__":
+    print('\nResult:\n')
+    print('-' * 120, '\n')
+    output_data(input_str, 1)
+    print('Done!')
