@@ -1,0 +1,19 @@
+5+6
+var = 5 + 6 * 9;
+some = (-6 + 5);
+if (some > 3) {
+    some -= 5;
+}
+else {
+    r = some // 5
+    some = some % 5;
+}
+print(some);
+print(var)
+
+/*
+something else
+var = 0;
+comment
+*/
+# new comment

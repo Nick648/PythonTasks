@@ -1,5 +1,5 @@
 import unittest
-from DevProgLang.Lexer import lex
+from DevProgLang import lex
 
 KEYWORD = 'KEYWORD'
 INT = 'INT'

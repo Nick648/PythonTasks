@@ -1,5 +1,4 @@
 import unittest
-from DevProgLang.Lexer import lex
 from Parser import *
 
 class TestImpParser(unittest.TestCase):

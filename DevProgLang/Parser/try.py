@@ -1,7 +1,4 @@
-import sys
-import os
-
-from DevProgLang.Lexer import openfile, lex, RESERVED
+from DevProgLang import openfile, lex, RESERVED
 
 # sys.path.insert(1, '../Lexer')
 # from Lex import *
@@ -11,7 +8,7 @@ if not os.path.exists('test_dir'):
     os.mkdir('test_dir')
 #ls(Linux) directory
 os.listdir(os.getcwd())
-print(os.path.exists('../Lexer/Lex.py')))
+print(os.path.exists('../Lexer/Lexer.py')))
 filename = os.path.abspath('../Lexer/data/code.txt')
 '''
 # print(f'Current Working Directory is: {os.getcwd()}')

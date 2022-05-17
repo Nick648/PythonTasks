@@ -1,11 +1,7 @@
-import sys
-
 # sys.path.insert(1, '../Lexer')
 # from Lex import *
-from functools import reduce
-from typing import List
 
-from DevProgLang.Lexer import lex, openfile, RESERVED, INT, ID, token_exprs
+from DevProgLang import lex, openfile, RESERVED, INT, token_exprs
 
 
 class Equality:
