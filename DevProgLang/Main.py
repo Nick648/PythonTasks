@@ -11,9 +11,9 @@ if __name__ == '__main__':
     file.close()
     tokens = lex(characters)  # list
     print('Tokens:', tokens)  # Tokens: [('5', 'INT'), ('+', 'PLUS_OP'),...
-    # for token in tokens:
-    #     print(">>>", token)
+    for token in tokens:
+        print(">>>", token)
     print('\nLexer Done!')
 
-    parser = Parser(tokens)
-    tree = parser.parse()
+    # parser = Parser(tokens)
+    # tree = parser.parse()
