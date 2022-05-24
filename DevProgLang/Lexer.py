@@ -5,7 +5,7 @@ import os
 from Tokens import *
 
 
-def lex(characters):  # lexer
+def lexer(characters):  # lexer
     pos = 0
     tokens = []
     while pos < len(characters):
