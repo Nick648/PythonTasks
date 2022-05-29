@@ -55,6 +55,7 @@ main(input_str)
 
 # For CAP, you only need what is above, having checked in advance for PEP8
 
+
 def output_data(arr, number=0):  # output array
     print("Table " + str(number) + ":\n")
     pprint(main(arr))

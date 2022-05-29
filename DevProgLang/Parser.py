@@ -1,3 +1,16 @@
+vars_value = dict()
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.pos = 0
+        self.line = 1
+    def error(self, s):
+        print("SyntaxError: invalid syntax")
+        print("In line", self.line, "expected:", s, "in pos", self.pos)
+        exit(1)
+    def parse(self):
+        pass
+
 def parser(tokens):
     pos, line = 0, 1
     for i in range(len(tokens)):

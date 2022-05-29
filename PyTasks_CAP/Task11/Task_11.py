@@ -28,7 +28,7 @@ def parse_d(data, offset):
 
 def parse_c(data, offset):
     c1 = struct.unpack('<f', data[offset: offset + 4])[0]
-    c2 = parse_array(data, 2, 'f', offset + 4)  # f = 4
+    c2 = parse_array(data, 2, 'f', offset + 4)  # f = 4, size 2 -> 4*2
     return {'C1': c1, 'C2': c2}  # c = 12
 
 

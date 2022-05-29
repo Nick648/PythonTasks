@@ -28,6 +28,7 @@ token_exprs = [
     (r'-', 'MINUS' + OP),
     (r'\.', 'POINT'),
     (r'\,', 'COMMA'),
+    (r'\*\*', 'EXPONENTIATION' + OP),
     (r'\*', 'MULTIPLICATION' + OP),
     (r'/', 'SLASH'),
     (r'<=', 'LESS_EQUALLY' + OP),

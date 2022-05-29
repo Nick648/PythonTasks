@@ -1,5 +1,10 @@
 var = 5 + 6 * 9;
-some = (-6 + 5);
+>> var;
+some = (-6 + 11);
+sum = 0;
+for i in (1;10) {
+    sum += i;
+}
 if (some > 3) {
     some -= 5;
 }
@@ -10,10 +15,5 @@ else {
 >> some;
 >> var;
 
-/*
-something else
-var = 0;
-comment
-*/
 # new comment
 exit
