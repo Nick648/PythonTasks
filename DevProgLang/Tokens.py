@@ -1,10 +1,9 @@
-# package DevProgLang/Lexer/Tokens.py
+# package DevProgLang/Tokens.py
 INT = 'INT'
 FLOAT = 'FLOAT'
-ID = 'ID_VAR'
+ID = 'VAR'
 OP = '_OP'
 KW = 'KW_'
-RESERVED = 'RESERVED'
 
 # Token's List
 token_exprs = [
@@ -30,12 +29,14 @@ token_exprs = [
     (r'\,', 'COMMA'),
     (r'\*\*', 'EXPONENTIATION' + OP),
     (r'\*', 'MULTIPLICATION' + OP),
-    (r'/', 'SLASH'),
-    (r'<=', 'LESS_EQUALLY' + OP),
-    (r'<', 'LESS' + OP),
-    (r'>=', 'MORE' + OP),
-    (r'>', 'MORE' + OP),
-    (r':=|=', 'ASSIGN' + OP),
+    (r'/', 'SLASH' + OP),
+    (r'input|<<', KW + 'INPUT'),
+    (r'print|>>', KW + 'PRINT'),
+    (r'<=', 'LESS_EQUALLY'),
+    (r'<', 'LESS'),
+    (r'>=', 'MORE_EQUALLY'),
+    (r'>', 'MORE'),
+    (r':=|=', 'ASSIGN'),
     (r'!=', 'NOT_EQUALLY' + OP),
     (r'\:', 'COLON'),
     (r'\;', 'SEMICOLON'),
@@ -58,7 +59,40 @@ token_exprs = [
     (r'begin', KW + 'begin'),
     (r'end', KW + 'END'),
     (r'exit', KW + 'EXIT'),
-    (r'input|<<', KW + 'INPUT'),
-    (r'print|>>', KW + 'PRINT'),
+    (r'func', KW + 'FUNC'),
+    (r'List', KW + 'LIST'),
     (r'[A-Za-z][A-Za-z0-9_]*', ID),
 ]
+
+
+class Token:
+
+    def __init__(self, type_token, value, number_line, position):
+        self.type_token = type_token
+        self.value = value
+        self.number_line = number_line
+        self.position = position
+
+    def getTypeToken(self):
+        return self.type_token
+
+    def getValue(self):
+        return self.value
+
+    def getNumberLine(self):
+        return self.number_line
+
+    def getPosition(self):
+        return self.position
+
+    def toString(self):
+        if self.getTypeToken() != 'NEWLINE':
+            text = f">>> [type: {self.type_token}; " \
+                   f"value: '{self.value}'; " \
+                   f"number_line: {self.number_line}; " \
+                   f"position: {self.position}]"
+        else:
+            text = f">>> [type: {self.type_token}; " \
+                   f"number_line: {self.number_line}; " \
+                   f"position: {self.position}]"
+        print(text)

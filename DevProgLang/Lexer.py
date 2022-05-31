@@ -1,4 +1,4 @@
-# package DevProgLang/Lexer/Lexer.py
+# package DevProgLang/Lexer.py
 import sys
 import re
 import os
@@ -6,10 +6,11 @@ from Tokens import *
 
 
 def lexer(characters):  # lexer
-    pos = 0
+    position, line = 0, 1
+    pos = 0  # for re
     tokens = []
     while pos < len(characters):
-        # print(">" * 10, pos)
+        # print("pos", ">" * 10, pos)
         match = None
         for token_exp in token_exprs:  # token_expression from Tokens.py
             pattern, tag = token_exp
@@ -18,8 +19,13 @@ def lexer(characters):  # lexer
             if match:
                 text = match.group(0)
                 if tag:
-                    token = (text, tag)
+                    token = Token(tag, text, line, position)  # Object
+                    # token = (text, tag)  # Tokens: [('5', 'INT'), ('+', 'PLUS_OP'),...
                     tokens.append(token)
+                    position += 1
+                    if tag == 'NEWLINE':
+                        line += 1
+                        position = 0
                 break
         if not match:
             sys.stderr.write('Illegal character: %s\n' % characters[pos])

@@ -1,19 +1,12 @@
 var = 5 + 6 * 9;
->> var;
+>> var
 some = (-6 + 11);
-sum = 0;
-for i in (1;10) {
-    sum += i;
-}
-if (some > 3) {
-    some -= 5;
-}
-else {
-    r = some // 5;
-    some = some % 5;
-}
+sum = -5;
+while sum <= -1 { sum += 2; };
+for i in (1;10) { sum += i; };
+if (some > 3) { some -= 5; };
+else { r = some // 5; some = some % 5; };
 >> some;
 >> var;
-
 # new comment
 exit
