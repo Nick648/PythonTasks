@@ -1,12 +1,18 @@
 var = 5 + 6 * 9;
->> var
-some = (-6 + 11);
+>> var;
 sum = -5;
-while sum <= -1 { sum += 2; };
-for i in (1;10) { sum += i; };
-if (some > 3) { some -= 5; };
-else { r = some // 5; some = some % 5; };
->> some;
+while (sum <= -1) { sum = sum + 2; >> sum; };
+if (var > 3) { var = var - 5; };
+# for i in (1,10) { sum += i; };
+>> sum;
 >> var;
 # new comment
+List link = [1, 2, 3, 4];
+link.insertAtEnd(2);
+link.insertAtHead(0);
+link.delete(2);
+link.deleteAtHead();
+link.search(2);
+link.isEmpty();
+>> link;
 exit

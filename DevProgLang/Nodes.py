@@ -12,7 +12,8 @@ class Node:
 
 class AssignNode(Node):
 
-    def __init__(self, type_node, name_variable, value, type_value):
+    def __init__(self, name_variable, value, type_value):
+        type_node = "Assign"
         super().__init__(type_node)
         self.name_variable = name_variable
         self.value = value
@@ -30,18 +31,19 @@ class AssignNode(Node):
 
 class OperationNode(Node):
 
-    def __init__(self, type_node, left_operand, right_operand, sign, final):
+    def __init__(self, left_operand, right_operand, sign, final):
+        type_node = "Operation"
         super().__init__(type_node)
         self.left_operand = left_operand
         self.right_operand = right_operand
         self.sign = sign
         self.final = final
         self.dict_main = {
-                    "+": 1,
-                    "-": 1,
-                    "*": 2,
-                    "/": 2,
-                }
+            "+": 1,
+            "-": 1,
+            "*": 2,
+            "/": 2,
+        }
 
     def getLeftOperand(self):
         return self.left_operand
@@ -122,7 +124,23 @@ class OperationNode(Node):
 
 class WhileNode(Node):
 
-    def __init__(self, type_node, condition, loop):
+    def __init__(self, condition, loop):
+        type_node = "While"
+        super().__init__(type_node)
+        self.condition = condition
+        self.loop = loop
+
+    def getCondition(self):
+        return self.condition
+
+    def getLoop(self):
+        return self.loop
+
+
+class ForNode(Node):
+
+    def __init__(self, condition, loop):
+        type_node = "For"
         super().__init__(type_node)
         self.condition = condition
         self.loop = loop
@@ -136,7 +154,8 @@ class WhileNode(Node):
 
 class IfNode(Node):
 
-    def __init__(self, type_node, condition, loop):
+    def __init__(self, condition, loop):
+        type_node = "If"
         super().__init__(type_node)
         self.condition = condition
         self.loop = loop
@@ -150,7 +169,8 @@ class IfNode(Node):
 
 class PrintNode(Node):
 
-    def __init__(self, type_node, value, type_value):
+    def __init__(self, value, type_value):
+        type_node = "Print"
         super().__init__(type_node)
         self.value = value
         self.type_value = type_value
@@ -164,7 +184,8 @@ class PrintNode(Node):
 
 class LinkedListNode(Node):
 
-    def __init__(self, type_node, name, values):
+    def __init__(self, name, values):
+        type_node = "LinkedList"
         super().__init__(type_node)
         self.name = name
         self.values = values
@@ -178,7 +199,8 @@ class LinkedListNode(Node):
 
 class LinkedListOperatioinNode(Node):
 
-    def __init__(self, type_node, type_operation, name_variable, values):
+    def __init__(self, type_operation, name_variable, values):
+        type_node = "LinkedListOperationNode"
         super().__init__(type_node)
         self.type_operation = type_operation
         self.name_variable = name_variable

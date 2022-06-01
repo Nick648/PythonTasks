@@ -13,9 +13,8 @@ def work_lex_out(tokens):
         token.toString()
 
 
-# print(eval("12 + (6+2*4) / 7 -2"))
-
 if __name__ == '__main__':
+    # print(eval("12 + (6+2*4 / 7 -2"))
     # filename = (input("Filename: ")).strip()
     filename = "code"  # DELETE !
     filename = openfile(filename)
@@ -25,8 +24,18 @@ if __name__ == '__main__':
     tokens = lexer(code)  # list of objects
     # work_lex_out(tokens)  # Out lexer
 
-    print('\nLexer Done!\n')
+    print('Lexer Done!\n')
 
     parser = Parser(tokens)  # Object for parsing
     parser.parse()  # Start parsing for search nodes
-    # node_list = parser.getNodeList()  # Get list of nodes
+    # parser.show_nodes() # Out parser
+    node_list = parser.getNodeList()  # List of nodes
+
+    print('Parser Done!\n')
+
+    inter = Interpreter(node_list)  # Object for execute
+    inter.execute()  # Start execute
+    # print(inter.linkedlist_values)  # Show all variables
+    # print(inter.variables_values)  # Show all LinkedList variables
+
+    print('\nInterpreter Done!\n')
