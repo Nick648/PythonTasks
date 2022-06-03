@@ -139,11 +139,15 @@ class WhileNode(Node):
 
 class ForNode(Node):
 
-    def __init__(self, condition, loop):
+    def __init__(self, name_variable, condition, loop):
         type_node = "For"
         super().__init__(type_node)
+        self.name_variable = name_variable
         self.condition = condition
         self.loop = loop
+
+    def getNameVariable(self):
+        return self.name_variable
 
     def getCondition(self):
         return self.condition

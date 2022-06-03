@@ -28,8 +28,8 @@ if __name__ == '__main__':
 
     parser = Parser(tokens)  # Object for parsing
     parser.parse()  # Start parsing for search nodes
-    # parser.show_nodes() # Out parser
     node_list = parser.getNodeList()  # List of nodes
+    # parser.show_nodes() # Out parser
 
     print('Parser Done!\n')
 

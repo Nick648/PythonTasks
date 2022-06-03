@@ -1,3 +1,6 @@
+from LinkList import *
+
+
 class Interpreter:
 
     def __init__(self, node_list):
@@ -15,6 +18,8 @@ class Interpreter:
                 self.executeIf(node)
             elif node_type == "While":
                 self.executeWhile(node)
+            elif node_type == "For":
+                self.executeFor(node)
             elif node_type == "Assign":
                 self.executeAssign(node)
             elif node_type == "LinkedList":
@@ -22,7 +27,14 @@ class Interpreter:
             elif node_type == "LinkedListOperationNode":
                 self.executeLinkedListOperation(node)
             else:
-                print("ERROR")
+                print("ERROR(STRANGE)")
+
+    def get_value_var(self, pos):
+        try:
+            result = self.variables_values[pos]
+            return result
+        except:
+            Errors.error_message(f'Value of variable not found: {pos}')
 
     def executeAssign(self, node):
         name_variable = node.getNameVariable()
@@ -36,7 +48,7 @@ class Interpreter:
         elif type_value == "VAR":
             # print(value)
             value = node.getValue()[0].getValue()
-            self.variables_values[name_variable] = self.variables_values[value]
+            self.variables_values[name_variable] = self.get_value_var(value)
         elif type_value == "Operation":
             value = self.executeOperation(node.getValue())
             self.variables_values[name_variable] = value
@@ -46,26 +58,27 @@ class Interpreter:
             value = self.executeHardOperation(value)
             self.variables_values[name_variable] = value
 
-
     def executePrint(self, node):
         type_value = node.getTypeValue()
         if type_value == "INT":
+            value = node.getValue()
+            print(value[0].getValue())
+        elif type_value == "FLOAT":
             value = node.getValue()
             print(value[0].getValue())
         elif type_value == "VAR":
             name_variable = node.getValue()[0].getValue()
             if name_variable in self.variables_values:
                 value = self.variables_values[name_variable]
-                print(value)
+                print(f'{name_variable}: {value}')
             elif name_variable in self.linkedlist_values:
                 value = self.linkedlist_values[name_variable]
-                print(value)
+                print(name_variable, end=' ')
+                value.show()
             else:
-                print("ERROR")
-        elif type_value == "Operation":
-            pass
+                Errors.error_message('Value of variable not found!')
         else:
-            print("ERROR")
+            Errors.error_message("Output only Vars and Integers!")
 
     def executeIf(self, node):
         condition = node.getCondition()
@@ -76,12 +89,12 @@ class Interpreter:
         # print("IF:", value_one.getTypeToken(), sign.getTypeToken(), value_two.getTypeToken())
 
         if value_one.getTypeToken() == "VAR":
-            value_one_condition = self.variables_values[value_one.getValue()]
+            value_one_condition = self.get_value_var(value_one.getValue())
         else:
             value_one_condition = value_one.getValue()
 
         if value_two.getTypeToken() == "VAR":
-            value_two_condition = self.variables_values[value_two.getValue()]
+            value_two_condition = self.get_value_var(value_two.getValue())
         else:
             value_two_condition = value_two.getValue()
 
@@ -113,6 +126,8 @@ class Interpreter:
                     self.executePrint(node_loop)
                 elif node_type == "Assign":
                     self.executeAssign(node_loop)
+                else:
+                    Errors.error_message("In 'if' only print and assign")
 
     def executeWhile(self, node):
         while True:
@@ -123,12 +138,12 @@ class Interpreter:
             value_two = condition[2]
 
             if value_one.getTypeToken() == "VAR":
-                value_one_condition = self.variables_values[value_one.getValue()]
+                value_one_condition = self.get_value_var(value_one.getValue())
             else:
                 value_one_condition = value_one.getValue()
 
             if value_two.getTypeToken() == "VAR":
-                value_two_condition = self.variables_values[value_two.getValue()]
+                value_two_condition = self.get_value_var(value_two.getValue())
             else:
                 value_two_condition = value_two.getValue()
             type_sign = sign.getTypeToken()
@@ -172,17 +187,53 @@ class Interpreter:
                         self.executePrint(node_loop)
                     elif node_type == "Assign":
                         self.executeAssign(node_loop)
+                    else:
+                        Errors.error_message("In 'while' only print and assign")
+
+    def executeFor(self, node):
+        condition = node.getCondition()
+        value_one = condition[0]
+        # sign = condition[1] # In Parser
+        value_two = condition[2]
+        loop = node.getLoop()
+        name_variable = node.getNameVariable()
+
+        if value_one.getTypeToken() == "VAR":
+            value_one_condition = self.get_value_var(value_one.getValue())
+        else:
+            value_one_condition = int(value_one.getValue())
+
+        if value_two.getTypeToken() == "VAR":
+            value_two_condition = self.get_value_var(value_two.getValue())
+        else:
+            value_two_condition = int(value_two.getValue())
+
+        if value_one_condition < value_two_condition:
+            self.variables_values[name_variable] = value_one_condition
+            while self.variables_values[name_variable] <= value_two_condition:
+                for node_loop in loop:
+                    node_type = node_loop.getTypeNode()
+                    if node_type == "Print":
+                        self.executePrint(node_loop)
+                    elif node_type == "Assign":
+                        self.executeAssign(node_loop)
+                    else:
+                        Errors.error_message("In 'for' only print and assign")
+                self.variables_values[name_variable] += 1
+            del self.variables_values[name_variable]
+        else:
+            Errors.error_message("In condition 'for' the first value must be less than the second")
 
     def executeOperation(self, node):
         left = node.getLeftOperand()
         right = node.getRightOperand()
         if left.getTypeToken() == "VAR":
-            left_operand = self.variables_values[left.getValue()]
+            left_operand = self.get_value_var(left.getValue())
         else:
             left_operand = left.getValue()
 
         if right.getTypeToken() == "VAR":
-            right_operand = self.variables_values[right.getValue()]
+            right_operand = self.get_value_var(right.getValue())
         else:
             right_operand = right.getValue()
         sign = node.getSign()
@@ -211,10 +262,14 @@ class Interpreter:
         value = node.function(exp)
         return value
 
-    def executeLinkedList(self, node):
+    def executeLinkedList(self, node):  # List class
         name = node.getName()
         values = node.getValues()
-        new_values = [elem.getValue() for elem in values]
+        # new_values = [elem.getValue() for elem in values]
+        new_values = List()
+        for elem in values:
+            new_values.add(elem.getValue())
+        # new_values.show()
         self.linkedlist_values[name] = new_values
 
     def executeLinkedListOperation(self, node):
@@ -223,71 +278,83 @@ class Interpreter:
         if type_operation == "setLLInsertAtEnd":
             name_variable = node.getNameVariable()
             value = node.getValues()
-            value_type = value.getTypeToken()
+            # value_type = value.getTypeToken()
             value = value.getValue()
             if name_variable in self.linkedlist_values:
                 values = self.linkedlist_values[name_variable]
-                values.append(value)
-                self.linkedlist_values[name_variable] = values
+                values.add(value)
+                # self.linkedlist_values[name_variable] = values
             else:
-                print("ERROR")
+                Errors.error_message('Value of variable not found: ' + str(name_variable))
 
         elif type_operation == "setLLInsertAtHead":
             name_variable = node.getNameVariable()
             value = node.getValues()
-            value_type = value.getTypeToken()
+            # value_type = value.getTypeToken()
             value = value.getValue()
             if name_variable in self.linkedlist_values:
                 values = self.linkedlist_values[name_variable]
-                values = [value] + values
-                self.linkedlist_values[name_variable] = values
+                values.add_head(value)
+                # self.linkedlist_values[name_variable] = values
             else:
-                print("ERROR")
+                Errors.error_message('Value of variable not found: ' + str(name_variable))
 
         elif type_operation == "setLLDelete":
             name_variable = node.getNameVariable()
             value = node.getValues()
-            value_type = value.getTypeToken()
-            value = value.getValue()
             if name_variable in self.linkedlist_values:
                 values = self.linkedlist_values[name_variable]
-                result = values.pop(int(value))
-                self.linkedlist_values[name_variable] = values
-                print(f"Element is deleted: {result}")
+                if value != "":
+                    value = value.getValue()
+                    values.dele(int(value))
+                else:
+                    values.dele(value)
             else:
-                print("ERROR")
+                Errors.error_message('Value of variable not found: ' + str(name_variable))
 
         elif type_operation == "setLLDeleteAtHead":
             name_variable = node.getNameVariable()
             if name_variable in self.linkedlist_values:
                 values = self.linkedlist_values[name_variable]
-                result = values.pop(0)
-                self.linkedlist_values[name_variable] = values
-                print(f"Element is deleted: {result}")
+                values.dele(0)
             else:
-                print("ERROR")
+                Errors.error_message('Value of variable not found: ' + str(name_variable))
 
         elif type_operation == "setLLSearch":
             name_variable = node.getNameVariable()
             value = node.getValues()
-            value_type = value.getTypeToken()
+            # value_type = value.getTypeToken()
             value = value.getValue()
             if name_variable in self.linkedlist_values:
                 values = self.linkedlist_values[name_variable]
-                print(f"Element on position {value}: {values[int(value)]}")
+                result = values.jogging(int(value))
+                if result == -1:
+                    Errors.error_message('List out of range')
+                else:
+                    result = result.get_value()
+                    print(f"Element on position {value}: {result}")
             else:
-                print("ERROR")
+                Errors.error_message('Value of variable not found: ' + str(name_variable))
 
         elif type_operation == "setLLIsEmpty":
             name_variable = node.getNameVariable()
             if name_variable in self.linkedlist_values:
                 values = self.linkedlist_values[name_variable]
-                if len(values) == 0:
-                    print("LinkedList is empty.")
+                if values.size() == 0:
+                    print(f"LinkedList {name_variable} is empty.")
                 else:
-                    print("LinkedList is NOT empty.")
+                    print(f"LinkedList {name_variable} is NOT empty.")
             else:
-                print("ERROR")
+                Errors.error_message('Value of variable not found: ' + str(name_variable))
+
+        elif type_operation == "setLLLen":
+            name_variable = node.getNameVariable()
+            if name_variable in self.linkedlist_values:
+                values = self.linkedlist_values[name_variable]
+                size = values.size()
+                print(f'Size of {name_variable}: {size}')
+            else:
+                Errors.error_message('Value of variable not found: ' + str(name_variable))
 
         else:
             pass

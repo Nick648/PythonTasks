@@ -68,24 +68,12 @@ class Parser:
                 self.node_list.append(self.set_If_While(line, "KW_IF"))
             elif line[0].getTypeToken() == "KW_WHILE":
                 self.node_list.append(self.set_If_While(line, "KW_WHILE"))
-            # elif line[0].getTypeToken() == "KW_FOR":
-            #     self.node_list.append(self.setFor(line))
+            elif line[0].getTypeToken() == "KW_FOR":
+                self.node_list.append(self.setFor(line))
             elif line[0].getTypeToken() == "KW_LIST":
                 self.node_list.append(self.setLinkedList(line))
             elif line[1].getTypeToken()[:3] == "LL_":
                 self.node_list.append(self.set_LL_operation(line, line[1].getTypeToken()))
-            # elif line[1].getTypeToken() == "LL_INSERT_END":
-            #     self.node_list.append(self.setLLInsertAtEnd(line))
-            # elif line[1].getTypeToken() == "LL_INSERT_HEAD":
-            #     self.node_list.append(self.setLLInsertAtHead(line))
-            # elif line[1].getTypeToken() == "LL_DELETE":
-            #     self.node_list.append(self.setLLDelete(line))
-            # elif line[1].getTypeToken() == "LL_DELETE_HEAD":
-            #     self.node_list.append(self.setLLDeleteAtHead(line))
-            # elif line[1].getTypeToken() == "LL_SEARCH":
-            #     self.node_list.append(self.setLLSearch(line))
-            # elif line[1].getTypeToken() == "LL_IS_EMPTY":
-            #     self.node_list.append(self.setLLIsEmpty(line))
             else:
                 Errors.FalseKod(ii + 1)
         # self.show_nodes()
@@ -151,13 +139,62 @@ class Parser:
                 ready_loop.append(self.setPrint(line))
             else:
                 Errors.FalseKod(num_line)
-
-        # print([elem.getValue() for elem in condition])
-        # print([elem.getTypeNode() for elem in ready_loop])
+        # print(f'{key_word}:')
+        # print("Condition:", [elem.getValue() for elem in condition])
+        # print("Ready_loop:", [elem.getTypeNode() for elem in ready_loop])
         if key_word == "KW_IF":
             return IfNode(condition, ready_loop)
         elif key_word == "KW_WHILE":
             return WhileNode(condition, ready_loop)
+
+    def setFor(self, line):
+        num_line = line[0].getNumberLine()
+        flag = 1
+        condition = list()
+        loop = list()
+        line_kod = list()
+        if len(line) > 10:
+            fr, name_var, inn = line[0].getTypeToken(), line[1].getTypeToken(), line[2].getTypeToken()
+            if fr == 'KW_FOR' and name_var == 'VAR' and inn == 'KW_IN':
+                name_var = line[1].getValue()
+            else:
+                Errors.FalseKod(num_line)
+        else:
+            Errors.FalseKod(num_line)
+
+        for elem in line:
+            if flag == 1 and elem.getValue() == "(":
+                flag = 2
+            elif flag == 2:
+                if elem.getValue() == ")":
+                    flag = 3
+                    continue
+                condition.append(elem)
+            elif flag == 3 and elem.getValue() == "{":
+                flag = 4
+            elif flag == 4:
+                if elem.getValue() == "}":
+                    flag = 5
+                    continue
+                line_kod.append(elem)
+                if elem.getValue() == ";":
+                    loop.append(line_kod)
+                    line_kod = list()
+        ready_loop = list()
+        for line in loop:
+            if line[0].getTypeToken() == "VAR" and line[1].getTypeToken() == "ASSIGN":
+                ready_loop.append(self.setAssign(line))
+            elif line[0].getTypeToken() == "KW_PRINT":
+                ready_loop.append(self.setPrint(line))
+            else:
+                Errors.FalseKod(num_line)
+        # print("Condition:", [elem.getValue() for elem in condition])
+        # print("Ready_loop:", [elem.getTypeNode() for elem in ready_loop])
+        if len(condition) == 3 and condition[1].getTypeToken() == 'COMMA':
+            if condition[0].getTypeToken() == 'INT' or condition[0].getTypeToken() == 'VAR' \
+                    and condition[2].getTypeToken() == 'INT' or condition[2].getTypeToken() == 'VAR':
+                return ForNode(name_var, condition, ready_loop)
+        Errors.FalseKod(num_line)
 
     def setOperation(self, value):
         if len(value) == 3:
@@ -180,7 +217,7 @@ class Parser:
 
     def set_LL_operation(self, line, token_type):
         name_variable = line[0].getValue()
-        flag, value = 1, 0
+        flag, value = 1, -1
         digits = list()
         for elem in line:
             if flag == 1 and elem.getValue() == "(":
@@ -189,52 +226,27 @@ class Parser:
                 if elem.getValue() == ")":
                     break
                 digits.append(elem)
-        if len(digits) == 1:
-            if digits[0].getTypeToken() == 'INT':
-                value = digits[0]
+        if len(digits) == 1 and digits[0].getTypeToken() == 'INT':
+            value = digits[0]
+        if len(digits) == 0:
+            value = ""
 
-        if token_type == 'LL_INSERT_END' and value != 0:
+        if token_type == 'LL_INSERT_END' and value != -1 and value != "":
             return LinkedListOperatioinNode("setLLInsertAtEnd", name_variable, value)
-        elif token_type == 'LL_INSERT_HEAD' and value != 0:
+        elif token_type == 'LL_INSERT_HEAD' and value != -1 and value != "":
             return LinkedListOperatioinNode("setLLInsertAtHead", name_variable, value)
-        elif token_type == 'LL_DELETE' and value != 0:
+        elif token_type == 'LL_DELETE' and value != -1:
             return LinkedListOperatioinNode("setLLDelete", name_variable, value)
         elif token_type == 'LL_DELETE_HEAD':
             return LinkedListOperatioinNode("setLLDeleteAtHead", name_variable, None)
-        elif token_type == 'LL_SEARCH' and value != 0:
+        elif token_type == 'LL_SEARCH' and value != -1 and value != "":
             return LinkedListOperatioinNode("setLLSearch", name_variable, value)
         elif token_type == 'LL_IS_EMPTY':
             return LinkedListOperatioinNode("setLLIsEmpty", name_variable, None)
+        elif token_type == 'LL_LEN':
+            return LinkedListOperatioinNode("setLLLen", name_variable, None)
         else:
             Errors.FalseKod(line[0].getNumberLine())
-
-    # def setLLInsertAtEnd(self, line):
-    #     name_variable = line[0].getValue()
-    #     value = line[3]
-    #     return LinkedListOperatioinNode("setLLInsertAtEnd", name_variable, value)
-    #
-    # def setLLInsertAtHead(self, line):
-    #     name_variable = line[0].getValue()
-    #     value = line[3]
-    #     return LinkedListOperatioinNode("setLLInsertAtHead", name_variable, value)
-    #
-    # def setLLDelete(self, line):
-    #     name_variable = line[0].getValue()
-    #     value = line[3]
-    #     return LinkedListOperatioinNode("setLLDelete", name_variable, value)
-    #
-    # def setLLDeleteAtHead(self, line):
-    #     name_variable = line[0].getValue()
-    #     return LinkedListOperatioinNode("setLLDeleteAtHead", name_variable, None)
-    #
-    # def setLLSearch(self, line):
-    #     name_variable = line[0].getValue()
-    #     value = line[3]
-    #     return LinkedListOperatioinNode("setLLSearch", name_variable, value)
-    #
-    # def setLLIsEmpty(self, line):
-    #     name_variable = line[0].getValue()
-    #     return LinkedListOperatioinNode("setLLIsEmpty", name_variable, None)
 
     def getNodeList(self):
         return self.node_list
