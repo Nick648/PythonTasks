@@ -73,7 +73,7 @@ class Interpreter:
                 print(f'{name_variable}: {value}')
             elif name_variable in self.linkedlist_values:
                 value = self.linkedlist_values[name_variable]
-                print(name_variable, end=' ')
+                print(f'{name_variable}:', end=' ')
                 value.show()
             else:
                 Errors.error_message('Value of variable not found!')
