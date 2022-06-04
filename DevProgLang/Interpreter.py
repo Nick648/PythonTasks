@@ -8,12 +8,14 @@ class Interpreter:
         self.variables_values = dict()
         self.linkedlist_values = dict()
 
-    def execute(self):
+    def execute(self):  # Begin
         for node in self.node_list:
             node_type = node.getTypeNode()
             # print("node_type:", node_type)
             if node_type == "Print":
                 self.executePrint(node)
+            elif node_type == "Input":
+                self.executeInput(node)
             elif node_type == "If":
                 self.executeIf(node)
             elif node_type == "While":
@@ -79,6 +81,15 @@ class Interpreter:
                 Errors.error_message('Value of variable not found!')
         else:
             Errors.error_message("Output only Vars and Integers!")
+
+    def executeInput(self, node):
+        comment = node.getComment()
+        name_variable = node.getNameVariable()
+        if comment is None:
+            value = input(f"Entering the value of a variable '{name_variable}':")
+        else:
+            value = input(comment)
+        self.variables_values[name_variable] = value
 
     def executeIf(self, node):
         condition = node.getCondition()
@@ -259,6 +270,7 @@ class Interpreter:
     def executeHardOperation(self, node):
         values = node.getLeftOperand()
         exp = [elem.getValue() for elem in values]
+        # print("HARD:", exp)
         value = node.function(exp)
         return value
 

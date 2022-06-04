@@ -1,3 +1,7 @@
+a << 'INPUT_FIRST:';
+>> a;
+a << ;
+>> a;
 var = 50 + 6 * 91;
 >> var;
 sum = -5;

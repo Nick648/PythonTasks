@@ -1,7 +1,7 @@
 import Errors
 
 
-class Node:
+class Node:  # Base(Parent) class
 
     def __init__(self, type_node):
         self.type_node = type_node
@@ -71,6 +71,10 @@ class OperationNode(Node):
             result = left * right
         elif sign == "/":
             result = int(left / right)
+        elif sign == "%":
+            result = left % right
+        elif sign == "//":
+            result = left // right
 
         exp.insert(coord - 1, str(result))
         return exp
@@ -101,7 +105,7 @@ class OperationNode(Node):
                 break
         return exp[0]
 
-    def count(self, line):
+    def count(self, line):  # Brackets
         count_line = list()
         ii = 0
         while ii <= len(line):
@@ -184,6 +188,21 @@ class PrintNode(Node):
 
     def getTypeValue(self):
         return self.type_value
+
+
+class InputNode(Node):
+
+    def __init__(self, name_variable, comment):
+        type_node = "Input"
+        super().__init__(type_node)
+        self.name_variable = name_variable
+        self.comment = comment
+
+    def getNameVariable(self):
+        return self.name_variable
+
+    def getComment(self):
+        return self.comment
 
 
 class LinkedListNode(Node):

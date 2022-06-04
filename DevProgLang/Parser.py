@@ -2,7 +2,7 @@ import Errors
 from Nodes import *
 
 
-def check_brackets(line):  # Static check brackets
+def check_brackets(line):  # Static function - check brackets
     if len(line) < 3 and line[-1].getTypeToken() != "COMMENT":
         k_line = line[-1].getNumberLine()
         Errors.FalseKod(k_line)
@@ -53,13 +53,15 @@ class Parser:
             return True
         return False
 
-    def parse(self):
+    def parse(self):  # Main parse
         for ii in range(len(self.kod)):  # Lines of code
             line = self.kod[ii]
             check_brackets(line)
 
             if line[0].getTypeToken() == "VAR" and line[1].getTypeToken() == "ASSIGN":
                 self.node_list.append(self.setAssign(line))
+            elif line[0].getTypeToken() == "VAR" and line[1].getTypeToken() == "KW_INPUT":
+                self.node_list.append(self.setInput(line))
             elif line[0].getTypeToken() == "COMMENT":
                 continue
             elif line[0].getTypeToken() == "KW_PRINT":
@@ -91,6 +93,25 @@ class Parser:
                 return AssignNode(name_variable, self.setOperation(value), "Operation")
             else:
                 return AssignNode(name_variable, self.setOperation(value), "OperationHard")
+
+    def setInput(self, line):
+        name_variable = line[0].getValue()
+        flag = 1
+        com = list()
+        for elem in line:
+            if flag == 1 and elem.getValue() == "'":
+                flag = 2
+            elif flag == 2:
+                if elem.getValue() == "'":
+                    break
+                com.append(elem)
+        if len(com) == 0:
+            return InputNode(name_variable, None)
+        else:
+            comment = ''
+            for i in com:
+                comment += i.getValue() + ' '
+            return InputNode(name_variable, comment)
 
     def setPrint(self, line):
         value = line[1:len(line) - 1]
@@ -203,7 +224,8 @@ class Parser:
             right_operand = value[2]
             return OperationNode(left_operand, right_operand, sign, final=True)
         else:
-            condition = [elem.getValue() for elem in value]
+            # condition = [elem.getValue() for elem in value]
+            # print(condition)
             return OperationNode(value, None, None, final=False)
 
     def setLinkedList(self, line):
