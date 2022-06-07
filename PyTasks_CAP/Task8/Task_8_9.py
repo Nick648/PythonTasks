@@ -22,7 +22,8 @@ main(s_1)
 
 # For CAP, you only need what is above, having checked in advance for PEP8
 if __name__ == "__main__":
-    print("Result:\n")
+    print("\nResults:\n")
     s_2 = "begin (set#8426 ==> @'enbe' ) ( set#-6155 ==> @'gear' ) end"
     print("Res 1:", main(s_1))
     print("Res 2:", main(s_2))
+    print("\n", "-" * 20, "Done!", "-" * 20)

@@ -12,6 +12,8 @@ def main(x):  # x similar everywhere
 hex(main(0xdcf12f12))
 
 # For CAP, you only need what is above, having checked in advance for PEP8
+
 if __name__ == "__main__":
     print("Res 1:", hex(main(0xdcf12f12)))
     print("Res 1:", hex(main(0x94d66cd1)))
+    print("\n", "-" * 20, "Done!", "-" * 20)

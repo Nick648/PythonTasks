@@ -1,9 +1,12 @@
 # Вариант 28
 
+from math import floor  # 1.1 = 1
+
+
 def main(x, y):
     ans = ((70 * x) ** 3 - (y - y ** 2 - 35)) / \
           (23 * ((x ** 3 - y ** 2 - 8 * y) ** 4))
-    ans += (abs(y / 85 - (x ** 2) / 22 - y ** 3) ** 5) ** 0.5
+    ans += (floor(y / 85 - (x ** 2) / 22 - y ** 3) ** 5) ** 0.5
     return ans
 
 

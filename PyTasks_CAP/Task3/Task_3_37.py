@@ -5,9 +5,9 @@ from math import atan
 def main(a, m, p, b):
     # print("Values: ", a, m, p, b)
     first_sum = 0
-    first_mul = 1
     second_sum = 0
     for i in range(1, m + 1):
+        first_mul = 1
         for c in range(1, a + 1):
             first_mul *= (29 * i - 2 * atan(31 * p ** 3 + 72 * c) ** 4)
         first_sum += first_mul
@@ -19,7 +19,7 @@ def main(a, m, p, b):
     return result
 
 
-print(main(2, 4, -0.98, 4))
+main(2, 4, -0.98, 4)
 
 # For CAP, you only need what is above, having checked in advance for PEP8
 
