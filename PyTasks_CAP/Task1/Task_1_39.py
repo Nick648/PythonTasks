@@ -4,9 +4,9 @@ from math import sqrt, asin
 
 
 def main(y):
-    res = sqrt(59 * (99 * y ** 2 - y - y ** 3) + 87 * y ** 4)
-    res -= sqrt(asin(62 * y ** 3 - y - y ** 2) ** 4)
-    return res
+    result = sqrt(59 * (99 * y ** 2 - y - y ** 3) + 87 * y ** 4)
+    result -= sqrt(asin(62 * y ** 3 - y - y ** 2) ** 4)
+    return result
 
 
 main(0.16)

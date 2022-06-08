@@ -3,11 +3,11 @@ from math import log10
 
 
 def main(x):
-    res = 0
+    result = 0
     for i in range(len(x)):
-        res += log10(37 * x[i // 3] ** 2 + 82) ** 4
-    res *= 54 * 68
-    return res
+        result += log10(37 * x[i // 3] ** 2 + 82) ** 4
+    result *= 54 * 68
+    return result
 
 
 main([-0.82, 0.59, 0.83, -0.39, 0.98, 0.48])
@@ -23,6 +23,6 @@ if __name__ == '__main__':
         main([0.32, -0.71, 0.97, -0.79, 0.82, 0.9]),
         main([-0.36, -0.17, 0.22, 0.13, 0.98, 0.45])
     ]
-    for i in range(len(res)):
-        print(f"Res {i + 1}:", "{:.2e}".format(res[i]))
+    for pos in range(len(res)):
+        print(f"Res {pos + 1}:", "{:.2e}".format(res[pos]))
     print("\n", "-" * 20, "Done!", "-" * 20)

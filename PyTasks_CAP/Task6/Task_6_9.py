@@ -57,6 +57,8 @@ def x2_2_2(x):
 main(['OX', 1994, 'SQL', 2009])
 
 # For CAP, you only need what is above, having checked in advance for PEP8
+
 if __name__ == "__main__":
     print('Res 1:', main(['OX', 1994, 'SQL', 2009]))
     print('Res 2:', main(['SCALA', 1962, 'HAML', 2001]))
+    print("\n", "-" * 20, "Done!", "-" * 20)

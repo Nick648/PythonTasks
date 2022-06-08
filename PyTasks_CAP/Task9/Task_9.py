@@ -31,35 +31,42 @@ def main():
 
 o = main()
 
-'''
-def str_raz(s_input):
+
+# For CAP, you only need what is above, having checked in advance for PEP8
+
+def str_raz(ob, s_input):
     list_s = s_input.split(',')  # s_input.split(' ')
     for item in list_s:
         item.strip()
-        if item == '.slur()' or item == '.slur' or item == 'slur()' or item == 'slur':
-            o1.slur()
-        elif item == '.hop()' or item == '.hop' or item == 'hop()' or item == 'hop':
-            o1.hop()
+        if '.slur()' in item or '.slur' in item or 'slur()' in item or 'slur' in item:
+            print(ob.slur())
+        elif '.hop()' in item or '.hop' in item or 'hop()' in item or 'hop' in item:
+            print(ob.hop())
 
 
-s_input = 'slur(),
-hop(),
-hop(),
-*hop(),
-slur(),
-*hop(),
-slur(),
-slur(),
-slur(),
-slur(),
-slur(),
-slur(),
-slur(),
+inp_1 = 'slur(),\
+hop(),\
+hop(),\
+*hop(),\
+slur(),\
+*hop(),\
+slur(),\
+slur(),\
+slur(),\
+slur(),\
+slur(),\
+slur(),\
+slur(),\
 slur()'
 
-str_raz(s_input)
+if __name__ == "__main__":
+    print("Results:\n")
+    o1 = main()
+    o2 = main()
+    print("Res 1:")
+    str_raz(o1, inp_1)
 
-
+'''
 def r_1():
     print('r_1')
     o = main()

@@ -22,7 +22,6 @@ main(in_1)
 
 # For CAP, you only need what is above, having checked in advance for PEP8
 
-
 if __name__ == '__main__':
     print("\nResults:\n")
     in_2 = "<section> <section>declare leri_316 =:\

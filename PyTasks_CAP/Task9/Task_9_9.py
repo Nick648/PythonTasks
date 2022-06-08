@@ -75,7 +75,7 @@ o.chalk() # 8\
 o.chalk() # 9'
 
 if __name__ == "__main__":
-    print("Result:\n")
+    print("Results:\n")
     o1 = main()
     o2 = main()
     print("Res 1:")

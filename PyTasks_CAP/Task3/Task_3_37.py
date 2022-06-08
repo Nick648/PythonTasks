@@ -30,7 +30,7 @@ if __name__ == "__main__":
                main(5, 2, 0.02, 8),
                main(2, 7, -0.18, 3),
                main(3, 7, -0.76, 8)]
-    for i in range(len(results)):
-        results[i] = "{:.2e}".format(results[i])
-        print(f"Res_{i + 1}: {results[i]}")
+    for pos in range(len(results)):
+        results[pos] = "{:.2e}".format(results[pos])
+        print(f"Res_{pos + 1}: {results[pos]}")
     print("\n", "-" * 20, "Done!", "-" * 20)

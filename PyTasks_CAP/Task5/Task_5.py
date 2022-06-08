@@ -23,3 +23,4 @@ if __name__ == "__main__":
     res_2 = "{:.2e}".format(res_2)
     print('Res 1:', res_1)
     print('Res 2:', res_2)
+    print("\n", "-" * 20, "Done!", "-" * 20)

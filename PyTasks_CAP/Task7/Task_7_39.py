@@ -6,8 +6,8 @@ def main(x):
     d = (x >> 15) & 0b1111
     e = (x >> 19) & 0b1111_1111_111
     f = (x >> 30) & 0b11
-    res = a | (c << 5) | (b << 10) | (e << 15) | (f << 26) | (d << 28)
-    return res
+    result = a | (c << 5) | (b << 10) | (e << 15) | (f << 26) | (d << 28)
+    return result
 
 
 main(0xdcf12f12)
